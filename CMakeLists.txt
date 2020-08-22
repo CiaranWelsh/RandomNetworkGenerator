@@ -62,6 +62,18 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 option(BUILD_TESTS "Build the tests when set to ON" ON)
 option(SIM_FEATURES "When TRUE, RNG can run simulations and check for things like steady state" OFF)
 
+
+#include(CMakeDependentOption)
+#cmake_dependent_option(YAML_CPP_BUILD_TESTS
+#  "Enable yaml-cpp tests" ON
+#  "BUILD_TESTING;CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
+#cmake_dependent_option(YAML_CPP_INSTALL
+#  "Enable generation of yaml-cpp install targets" ON
+#  "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
+#cmake_dependent_option(YAML_MSVC_SHARED_RT
+#  "MSVC: Build yaml-cpp with shared runtime libs (/MD)" ON
+#  "MSVC" OFF)
+
 #####################################################################
 #   Deal with Dependencies
 #
