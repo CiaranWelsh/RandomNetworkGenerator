@@ -45,27 +45,29 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
-
-# example how to set c++ compiler flags for GNU
-if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused")
-    set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-endif ()
+# ensure -fpic on systems that support it
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # set CMAKE_PREFIX_PATH. Users can and should override this variable
 set(CMAKE_PREFIX_PATH "D:/CppLibraries" CACHE PATH "Top level directory containing installed dependencies")
 
 # Set module path
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-#todo remember to set visibility options to hidden by default on linux builds.
+# set all visibility to hidden by default.
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
+
+# options
+option(BUILD_TESTS "Build the tests when set to ON" ON)
+option(SIM_FEATURES "When TRUE, RNG can run simulations and check for things like steady state" OFF)
 
 #####################################################################
-#   Find Dependencies
+#   Deal with Dependencies
 #
 
+# dependency path
+set(RNG_DEPENDENCIES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies")
 add_subdirectory(dependencies)
 
 
