@@ -7,3 +7,6 @@
 [submodule "dependencies/yaml-cpp"]
 	path = dependencies/yaml-cpp
 	url = https://github.com/CiaranWelsh/yaml-cpp.git
+[submodule "dependencies/pystring"]
+	path = dependencies/pystring
+	url = https://github.com/CiaranWelsh/pystring.git
