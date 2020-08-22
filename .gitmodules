@@ -1,9 +1,6 @@
 [submodule "dependencies/googletest"]
 	path = dependencies/googletest
 	url = https://github.com/google/googletest.git
-[submodule "dependencies/yaml-cpp"]
-	path = dependencies/yaml-cpp
-	url = https://github.com/jbeder/yaml-cpp.git
 [submodule "dependencies/libSBML-dependencies"]
 	path = dependencies/libSBML-dependencies
 	url = https://github.com/sbmlteam/libSBML-dependencies.git
