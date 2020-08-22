@@ -11,6 +11,7 @@ if (${SIM_FEATURES})
     # then we need to locate and use roadrunner.
 endif()
 
+add_subdirectory(yaml-cpp)
 
 
 
