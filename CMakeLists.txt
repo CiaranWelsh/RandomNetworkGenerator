@@ -1,7 +1,4 @@
-cmake_minimum_required(VERSION 3.7...3.18)
-if (${CMAKE_VERSION} VERSION_LESS 3.12)
-    cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
-endif ()
+cmake_minimum_required(VERSION 3.14...3.18)
 
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 0)
@@ -62,6 +59,8 @@ set(CMAKE_PREFIX_PATH "D:/CppLibraries" CACHE PATH "Top level directory containi
 
 # Set module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+#todo remember to set visibility options to hidden by default on linux builds.
 
 #####################################################################
 #   Find Dependencies
