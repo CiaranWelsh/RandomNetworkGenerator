@@ -1,19 +1,12 @@
 [submodule "dependencies/googletest"]
 	path = dependencies/googletest
 	url = https://github.com/google/googletest.git
-[submodule "dependencies/libSBML-dependencies"]
-	path = dependencies/libSBML-dependencies
-	url = https://github.com/sbmlteam/libSBML-dependencies.git
 [submodule "dependencies/yaml-cpp"]
 	path = dependencies/yaml-cpp
 	url = https://github.com/CiaranWelsh/yaml-cpp.git
 [submodule "dependencies/pystring"]
 	path = dependencies/pystring
 	url = https://github.com/CiaranWelsh/pystring.git
-
-[submodule "dependencies/libSBML-5.18.0-core-plus-packages"]
-	path = dependencies/libSBML-5.18.0-core-plus-packages
-	url = https://github.com/CiaranWelsh/libSBML-5.18.0-core-plus-packages.git
 [submodule "dependencies/antimony"]
 	path = dependencies/antimony
 	url = https://github.com/CiaranWelsh/antimony.git
