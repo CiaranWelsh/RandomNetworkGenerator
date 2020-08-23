@@ -11,3 +11,9 @@
 	path = dependencies/pystring
 	url = https://github.com/CiaranWelsh/pystring.git
 
+[submodule "dependencies/libSBML-5.18.0-core-plus-packages"]
+	path = dependencies/libSBML-5.18.0-core-plus-packages
+	url = https://github.com/CiaranWelsh/libSBML-5.18.0-core-plus-packages.git
+[submodule "dependencies/antimony"]
+	path = dependencies/antimony
+	url = https://github.com/CiaranWelsh/antimony.git

@@ -14,14 +14,20 @@ project(RandomNetworkGenerator VERSION ${VERSION}
 #   Includes
 #
 
+# Add custom cmake modules to module path
+set(CMAKE_MODULE_PATH CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
 # guard against in-source builds and bad build-type strings
 include(cmake/safeguards.cmake)
 
-# get git hash
-include(cmake/git_revision.cmake)
-
 # For incorporating dependencies into the main project
 include(FetchContent)
+
+# Convenience macro to set a variable on windows, linux and macos
+include(SetCrossPlatform)
+
+# Utility for querying cmake variables
+include(QueryCMakeVariables)
 
 ##################################################################################
 #   Project wide setup
@@ -48,8 +54,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 # ensure -fpic on systems that support it
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# set CMAKE_PREFIX_PATH. Users can and should override this variable
-set(CMAKE_PREFIX_PATH "D:/CppLibraries" CACHE PATH "Top level directory containing installed dependencies")
+# set CMAKE_PREFIX_PATH.
+list(APPEND CMAKE_PREFIX_PATH "D:/CppLibraries")
 
 # Set module path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -63,23 +69,13 @@ option(BUILD_TESTS "Build the tests when set to ON" ON)
 option(SIM_FEATURES "When TRUE, RNG can run simulations and check for things like steady state" OFF)
 
 
-#include(CMakeDependentOption)
-#cmake_dependent_option(YAML_CPP_BUILD_TESTS
-#  "Enable yaml-cpp tests" ON
-#  "BUILD_TESTING;CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
-#cmake_dependent_option(YAML_CPP_INSTALL
-#  "Enable generation of yaml-cpp install targets" ON
-#  "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
-#cmake_dependent_option(YAML_MSVC_SHARED_RT
-#  "MSVC: Build yaml-cpp with shared runtime libs (/MD)" ON
-#  "MSVC" OFF)
-
 #####################################################################
 #   Deal with Dependencies
 #
 
 # dependency path
 set(RNG_DEPENDENCIES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies")
+
 add_subdirectory(dependencies)
 
 
@@ -94,11 +90,25 @@ add_subdirectory(src)
 #   Tests
 #
 
+#TODO USE CMakeDependentOption
+
+#include(CMakeDependentOption)
+#cmake_dependent_option(YAML_CPP_BUILD_TESTS
+#  "Enable yaml-cpp tests" ON
+#  "BUILD_TESTING;CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
+#cmake_dependent_option(YAML_CPP_INSTALL
+#  "Enable generation of yaml-cpp install targets" ON
+#  "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
+#cmake_dependent_option(YAML_MSVC_SHARED_RT
+#  "MSVC: Build yaml-cpp with shared runtime libs (/MD)" ON
+#  "MSVC" OFF)
+
 # this comparison ensures tests do not get built if this project gets embedded
 # into another project
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     add_subdirectory(test)
 endif ()
+
 
 
 #################################################################
